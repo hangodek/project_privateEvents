@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :homepages, only: [ :index ]
+  resources :registers, only: [ :new, :create ]
+  resources :events, only: [ :index, :new, :create ]
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,4 +16,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  root "homepages#index"
 end

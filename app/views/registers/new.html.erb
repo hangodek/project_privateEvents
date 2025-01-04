@@ -3,9 +3,15 @@
 
 <section class="prose flex flex-col justify-center items-center h-screen">
 
-  <h1>Login</h1>
+  <h1>Register</h1>
 
-  <%= form_with url: session_path, html: {class: "flex flex-col justify-center items-center"} do |form| %>
+  <%= form_with model: @user, url: registers_path, html: {class: "flex flex-col justify-center items-center gap-4"} do |form| %>
+    <%= form.text_field :username,
+                    required: true,
+                    autofocus: true,
+                    autocomplete: "name",
+                    placeholder: "Enter your username",
+                    class: "input input-bordered" %>
     <%= form.email_field :email_address,
                      required: true,
                      autofocus: true,
@@ -13,20 +19,18 @@
                      placeholder: "Enter your email address",
                      value: params[:email_address],
                      class: "input input-bordered" %>
-    <br>
     <%= form.password_field :password,
                         required: true,
                         autocomplete: "current-password",
                         placeholder: "Enter your password",
                         class: "input input-bordered" %>
-    <br>
-    <%= form.submit "Sign in", class: "btn btn-primary btn-wide text-white" %>
+    <%= form.submit "Register", class: "btn btn-primary btn-wide text-white" %>
   <% end %>
 
   <br>
 
-  <p>Don't have an account ?
-    <%= link_to "Register", new_register_path %>
+  <p>Already have an account ?
+    <%= link_to "Login", new_session_path %>
   </p>
   <%= link_to "Forgot password?", new_password_path %>
 </section>
