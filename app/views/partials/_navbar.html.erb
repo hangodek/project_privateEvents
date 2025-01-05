@@ -1,6 +1,6 @@
-<nav class="navbar relative bg-primary">
+<nav class="navbar bg-primary relative">
   <details class="dropdown w-full">
-    <summary class="btn bg-black rounded">
+    <summary class="btn btn-ghost bg-black rounded">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="24px"
@@ -11,14 +11,36 @@
         <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
       </svg>
     </summary>
-    <ul class="menu gap-4">
-      <%= link_to "Homepages", homepages_path, class: "btn rounded-none" %>
-      <%= link_to "Events", events_path, class: "btn rounded-none" %>
+    <ul
+      class="
+        menu dropdown-content rounded-box shadow bg-base-100 gap-4 mt-4 w-52
+      "
+    >
+      <%= link_to "Homepages",
+      homepages_path,
+      class: "btn btn-ghost bg-base-100 rounded-none" %>
+      <%= link_to "Events", events_path, class: "btn btn-ghost bg-base-100 rounded-none" %>
     </ul>
   </details>
-  <div class="avatar absolute top-2 right-2">
-    <div class="w-12 rounded-full">
-      <%= image_tag("anonymous.jpg") %>
-    </div>
-  </div>
+
+  <% if authenticated? %>
+    <details class="dropdown dropdown-end absolute top-2 right-2">
+      <summary class="btn btn-circle avatar">
+        <div class="w-12 rounded-full">
+          <%= image_tag("anonymous.jpg") %>
+        </div>
+      </summary>
+      <ul
+        class="
+          menu dropdown-content rounded-box shadow bg-base-100 gap-4 mt-4 w-52
+        "
+      >
+        <%= link_to "Profile", root_path, class: "btn rounded-sm rounded-none" %>
+        <%= button_to "Logout",
+        session_path,
+        class: "btn btn-error rounded-sm w-full text-white rounded-none",
+        method: :delete %>
+      </ul>
+    </details>
+  <% end %>
 </nav>
