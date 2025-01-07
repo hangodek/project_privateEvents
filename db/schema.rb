@@ -13,6 +13,8 @@
 ActiveRecord::Schema[8.0].define(version: 2024_12_26_073248) do
   create_table "events", force: :cascade do |t|
     t.integer "hoster_id", null: false
+    t.string "name", null: false
+    t.string "description", null: false
     t.string "location", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

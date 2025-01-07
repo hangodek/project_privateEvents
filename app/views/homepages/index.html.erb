@@ -27,19 +27,55 @@
   <% end %>
 
   <% if authenticated? %>
-    <div class="prose">
-      <h1>Hosting Events</h1>
+    <div class="p-4">
+      <h1 class="text-4xl text-bold text-accent">Hosting Events</h1>
       <% if @hosting_events %>
         <% @hosting_events.each do |event| %>
-          <%= event.location %>
+          <div class="card bg-base-100 shadow-xl rounded">
+            <div class="card-body">
+              <h2 class="text-3xl text-bold card-title"><%= event.name %></h2>
+              <p><%= event.description %></p>
+              <div class="card-actions justify-center mt-4">
+                <div>
+                  <button
+                    type="button"
+                    class="btn btn-primary text-white"
+                    onclick="modal_1.showModal()"
+                  >Attendees List</button>
+                  <dialog id="modal_1" class="modal">
+                    <div class="modal-box">
+                      <h3 class="text-2xl text-bold text-accent">Attendees</h3>
+                      <% if event.attendees.any? %>
+                        <ul class="mt-4">
+                          <% event.attendees.each do |attende| %>
+                            <li><%= attende.username %></li>
+                          <% end %>
+                        </ul>
+                      <% else %>
+                        <p>No attendees yet!</p>
+                      <% end %>
+                    </div>
+                  </dialog>
+                </div>
+
+                <%= button_to "Cancel Events",
+                event,
+                method: :delete,
+                data: {
+                  turbo_confirm: "Are you sure ?",
+                },
+                class: "btn btn-error text-white" %>
+              </div>
+            </div>
+          </div>
         <% end %>
       <% else %>
         <h3>You doesnt host any events yet!</h3>
       <% end %>
     </div>
 
-    <div class="prose">
-      <h1>Attending Events</h1>
+    <div class="p-4">
+      <h1 class="text-4xl text-bold text-accent">Attending Events</h1>
     </div>
   <% end %>
 </section>
