@@ -1,4 +1,4 @@
-<nav class="navbar bg-primary relative">
+<nav class="navbar bg-primary relative z-50">
   <details class="dropdown w-full">
     <summary class="btn btn-ghost bg-black rounded">
       <svg
@@ -35,6 +35,7 @@
           menu dropdown-content rounded-box shadow bg-base-100 gap-4 mt-4 w-52
         "
       >
+        <p class="text-xl text-center font-bold"><%= Current.user.email_address %></p>
         <%= link_to "Profile", root_path, class: "btn rounded-sm rounded-none" %>
         <%= button_to "Logout",
         session_path,

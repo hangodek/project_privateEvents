@@ -1,0 +1,103 @@
+<div class="flex flex-col gap-4 p-4">
+  <h1 class="text-4xl font-bold text-accent">Hosting Events</h1>
+  <% if @hosting_events.any? %>
+    <% @hosting_events.each do |event| %>
+      <div class="card bg-base-100 shadow-xl rounded">
+        <div class="card-body break-words">
+          <h2 class="text-3xl font-bold card-title"><%= event.name %></h2>
+          <p><%= event.description %></p>
+          <div class="card-actions justify-center mt-4">
+            <div>
+              <button
+                type="button"
+                class="btn btn-primary text-white"
+                onclick="hosting_modal_<%= event.id %>.showModal()"
+              >Attendees List</button>
+              <dialog id="hosting_modal_<%= event.id %>" class="modal">
+                <div class="modal-box">
+                  <h3 class="text-2xl font-bold text-accent">Attendees</h3>
+                  <% if event.attendees.any? %>
+                    <ul class="mt-4">
+                      <% event.attendees.each do |attende| %>
+                        <li><%= attende.username %></li>
+                      <% end %>
+                    </ul>
+                  <% else %>
+                    <p>No attendees yet!</p>
+                  <% end %>
+                  <div class="modal-action">
+                    <form method="dialog">
+                      <button class="btn bg-base-200">Close</button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
+            </div>
+
+            <%= button_to "Cancel Event",
+            event,
+            method: :delete,
+            data: {
+              turbo_confirm: "Are you sure ?",
+            },
+            class: "btn btn-error text-white" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <h3>You doesnt host any events yet!</h3>
+  <% end %>
+</div>
+
+<div class="flex flex-col gap-4 p-4">
+  <h1 class="text-4xl font-bold text-accent">Attending Events</h1>
+  <% if @attending_events.any? %>
+    <% @attending_events.each do |event| %>
+      <div class="card bg-base-100 shadow-xl rounded">
+        <div class="card-body break-words">
+          <h2 class="text-3xl font-bold card-title"><%= event.name %></h2>
+          <p><%= event.description %></p>
+          <div class="card-actions justify-center mt-4">
+            <div>
+              <button
+                type="button"
+                class="btn btn-primary text-white"
+                onclick="attending_modal_<%= event.id %>.showModal()"
+              >Attendees List</button>
+              <dialog id="attending_modal_<%= event.id %>" class="modal">
+                <div class="modal-box">
+                  <h3 class="text-2xl font-bold text-accent">Attendees</h3>
+                  <% if event.attendees.any? %>
+                    <ul class="mt-4">
+                      <% event.attendees.each do |attende| %>
+                        <li><%= attende.username %></li>
+                      <% end %>
+                    </ul>
+                  <% else %>
+                    <p>No attendees yet!</p>
+                  <% end %>
+                  <div class="modal-action">
+                    <form method="dialog">
+                      <button class="btn bg-base-200">Close</button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
+            </div>
+
+            <%= button_to "Unnatend Event",
+            event,
+            method: :delete,
+            data: {
+              turbo_confirm: "Are you sure ?",
+            },
+            class: "btn btn-error text-white" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <h3>You doesnt attend any events yet!</h3>
+  <% end %>
+</div>

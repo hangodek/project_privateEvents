@@ -1,2 +1,11 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<%= render "partials/navbar/navbar" %>
+
+<section class="flex flex-col">
+  <% unless authenticated? %>
+    <%= render "partials/events/events_unauthenticated_welcome" %>
+  <% end %>
+
+  <% if authenticated? %>
+    <%= render "partials/events/events_authenticated_events_card" %>
+  <% end %>
+</section>
