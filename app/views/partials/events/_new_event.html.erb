@@ -1,0 +1,20 @@
+<%= form_with model: @event, url: events_path do |form| %>
+  <div class="flex flex-col">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "input input-bordered rounded-none" %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= form.label :description %>
+    <%= form.textarea :description, class: "textarea textarea-bordered rounded-none" %>
+  </div>
+
+  <div class="flex flex-col">
+    <%= form.label :location %>
+    <%= form.text_field :location, class: "input input-bordered rounded-none" %>
+  </div>
+
+  <div class="py-4">
+    <%= form.submit "Create Event", class: "btn btn-primary" %>
+  </div>
+<% end %>

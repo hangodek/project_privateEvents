@@ -1,10 +1,6 @@
 <%= render "partials/navbar/navbar" %>
 
 <section class="flex flex-col">
-  <% unless authenticated? %>
-    <%= render "partials/events/events_unauthenticated_welcome" %>
-  <% end %>
-
   <% if authenticated? %>
     <%= render "partials/events/events_authenticated_events_card" %>
   <% end %>

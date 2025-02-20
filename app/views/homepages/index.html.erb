@@ -1,1 +1,5 @@
 <%= render "partials/navbar/navbar" %>
+
+<% unless authenticated? %>
+  <%= render "partials/events/events_unauthenticated_welcome" %>
+<% end %>
