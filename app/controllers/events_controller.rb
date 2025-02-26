@@ -19,7 +19,8 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to events_path
     else
-      redirect_to events_path
+      flash.now[:alert] = "Description has to be 20+ characters"
+      render :new, status: :unprocessable_entity
     end
   end
 
