@@ -30,6 +30,21 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 
+
+  def attend
+    user = Current.user
+    @event = Event.find(params[:id])
+    @event.attendees << user
+    redirect_back fallback_location: root_path
+  end
+
+  def unattend
+    user = Current.user
+    @event = Event.find(params[:id])
+    @event.attendees.delete(user)
+    redirect_back fallback_location: root_path
+  end
+
   private
 
   def event_params

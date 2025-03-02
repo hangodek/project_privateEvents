@@ -3,7 +3,7 @@ class HomepagesController < ApplicationController
 
   def index
     if authenticated?
-      @user = Current.user.email_address
+      @user = Current.user
       @events = Event.all
     end
   end

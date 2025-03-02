@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   resources :homepages, only: [ :index ]
   resources :registers, only: [ :new, :create ]
-  resources :events, only: [ :index, :new, :create, :destroy ]
+  resources :events, only: [ :index, :new, :create, :destroy ] do
+    member do
+      post "attend", to: "events#attend"
+      delete "unattend", to: "events#unattend"
+    end
+  end
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

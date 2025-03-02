@@ -90,8 +90,8 @@
                 </dialog>
               </div>
 
-              <%= button_to "Unnatend Event",
-              event,
+              <%= button_to "Unattend Event",
+              unattend_event_path(event),
               method: :delete,
               data: {
                 turbo_confirm: "Are you sure ?",
