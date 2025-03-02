@@ -1,23 +1,31 @@
 <div class="p-4">
-  <%= link_to image_tag("arrow_back.svg"), events_path %>
+  <%= link_to image_tag("arrow_back.svg"), events_path, class: "w-6 h-6 md:w-8 md:h-8" %>
 </div>
 
-<section class="prose flex flex-col items-center h-screen">
-  <%= form_with model: @event, url: events_path, html: {class: "flex flex-col items-center gap-4"}  do |form| %>
+<div class="prose flex flex-col items-center h-screen p-4">
+  <%= form_with model: @event, url: events_path, html: { class: "flex flex-col items-center gap-4 w-full max-w-md md:max-w-lg" } do |form| %>
 
-    <%= form.label "Event Name" %>
-    <%= form.text_field :name, class: "input input-bordered w-full rounded-none" %>
+    <%= form.label "Event Name", class: "text-sm md:text-base font-medium" %>
+    <%= form.text_field :name,
+                    class:
+                      "input input-bordered w-full rounded-none text-sm md:text-base" %>
 
-    <%= form.label :description %>
-    <%= form.textarea :description,
-                  class: "textarea textarea-bordered w-full rounded-none" %>
+    <%= form.label :description, class: "text-sm md:text-base font-medium" %>
+    <%= form.text_area :description,
+                   class:
+                     "textarea textarea-bordered w-full rounded-none text-sm md:text-base" %>
 
-    <%= form.label :location %>
-    <%= form.text_field :location, class: "input input-bordered w-full rounded-none" %>
+    <%= form.label :location, class: "text-sm md:text-base font-medium" %>
+    <%= form.text_field :location,
+                    class:
+                      "input input-bordered w-full rounded-none text-sm md:text-base" %>
 
-    <%= form.submit "Create Event", class: "btn btn-primary btn-wide text-white" %>
+    <%= form.submit "Create Event",
+                class: "btn btn-primary btn-wide text-white text-sm md:text-base" %>
 
-    <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+    <%= if flash[:alert]
+      tag.div(flash[:alert], style: "color:red", class: "text-sm md:text-base")
+    end %>
 
   <% end %>
-</section>
+</div>

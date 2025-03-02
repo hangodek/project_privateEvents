@@ -1,36 +1,47 @@
+<div class="p-4">
+  <%= link_to image_tag("arrow_back.svg"),
+  homepages_path,
+  class: "w-6 h-6 md:w-8 md:h-8" %>
+</div>
+
 <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
 <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
 
-<section class="prose flex flex-col justify-center items-center h-screen">
+<main class="flex justify-center items-center">
+  <section class="prose flex flex-col justify-center items-center h-screen p-4">
 
-  <h1>Register</h1>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Register</h1>
 
-  <%= form_with model: @user, url: registers_path, html: {class: "flex flex-col justify-center items-center gap-4"} do |form| %>
-    <%= form.text_field :username,
-                    required: true,
-                    autofocus: true,
-                    autocomplete: "name",
-                    placeholder: "Enter your username",
-                    class: "input input-bordered" %>
-    <%= form.email_field :email_address,
-                     required: true,
-                     autofocus: true,
-                     autocomplete: "username",
-                     placeholder: "Enter your email address",
-                     value: params[:email_address],
-                     class: "input input-bordered" %>
-    <%= form.password_field :password,
-                        required: true,
-                        autocomplete: "current-password",
-                        placeholder: "Enter your password",
-                        class: "input input-bordered" %>
-    <%= form.submit "Register", class: "btn btn-primary btn-wide text-white" %>
-  <% end %>
+    <%= form_with model: @user, url: registers_path, html: {class: "flex flex-col justify-center items-center gap-4 w-full max-w-md"} do |form| %>
+      <%= form.text_field :username,
+                      required: true,
+                      autofocus: true,
+                      autocomplete: "name",
+                      placeholder: "Enter your username",
+                      class: "input input-bordered w-full" %>
+      <%= form.email_field :email_address,
+                       required: true,
+                       autofocus: true,
+                       autocomplete: "username",
+                       placeholder: "Enter your email address",
+                       value: params[:email_address],
+                       class: "input input-bordered w-full" %>
+      <%= form.password_field :password,
+                          required: true,
+                          autocomplete: "current-password",
+                          placeholder: "Enter your password",
+                          class: "input input-bordered w-full" %>
+      <%= form.submit "Register",
+                  class: "btn btn-primary btn-wide text-white w-full sm:w-auto" %>
+    <% end %>
 
-  <br>
+    <br>
 
-  <p>Already have an account ?
-    <%= link_to "Login", new_session_path %>
-  </p>
-  <%= link_to "Forgot password?", new_password_path %>
-</section>
+    <p class="text-center">Already have an account ?
+      <%= link_to "Login", new_session_path, class: "text-blue-500 hover:text-blue-700" %>
+    </p>
+    <%= link_to "Forgot password?",
+    new_password_path,
+    class: "text-blue-500 hover:text-blue-700" %>
+  </section>
+</main>

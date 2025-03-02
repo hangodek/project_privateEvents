@@ -1,32 +1,59 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<div class="p-4">
+  <%= link_to image_tag("arrow_back.svg"),
+  homepages_path,
+  class: "w-6 h-6 md:w-8 md:h-8" %>
+</div>
 
-<section class="prose flex flex-col justify-center items-center h-screen">
+<%= if flash[:alert]
+  tag.div(
+    flash[:alert],
+    class:
+      "text-sm md:text-base text-center text-red-600 p-2 bg-red-50 rounded-md w-full max-w-md mx-auto",
+  )
+end %>
+<%= if flash[:notice]
+  tag.div(
+    flash[:notice],
+    class:
+      "text-sm md:text-base text-center text-green-600 p-2 bg-green-50 rounded-md w-full max-w-md mx-auto",
+  )
+end %>
 
-  <h1>Login</h1>
+<main class="flex justify-center items-center">
+  <section class="prose flex flex-col justify-center items-center min-h-screen">
+    <h1 class="text-2xl md:text-4xl font-bold mb-4 text-center">Login</h1>
 
-  <%= form_with url: session_path, html: {class: "flex flex-col justify-center items-center"} do |form| %>
-    <%= form.email_field :email_address,
-                     required: true,
-                     autofocus: true,
-                     autocomplete: "username",
-                     placeholder: "Enter your email address",
-                     value: params[:email_address],
-                     class: "input input-bordered" %>
-    <br>
-    <%= form.password_field :password,
-                        required: true,
-                        autocomplete: "current-password",
-                        placeholder: "Enter your password",
-                        class: "input input-bordered" %>
-    <br>
-    <%= form.submit "Sign in", class: "btn btn-primary btn-wide text-white" %>
-  <% end %>
+    <%= form_with url: session_path, html: { class: "flex flex-col justify-center items-center w-full max-w-md" } do |form| %>
+      <%= form.email_field :email_address,
+                       required: true,
+                       autofocus: true,
+                       autocomplete: "username",
+                       placeholder: "Enter your email address",
+                       value: params[:email_address],
+                       class:
+                         "input input-bordered w-full mb-4 text-sm md:text-base placeholder-gray-400" %>
 
-  <br>
+      <%= form.password_field :password,
+                          required: true,
+                          autocomplete: "current-password",
+                          placeholder: "Enter your password",
+                          class:
+                            "input input-bordered w-full mb-4 text-sm md:text-base placeholder-gray-400" %>
 
-  <p>Don't have an account ?
-    <%= link_to "Register", new_register_path %>
-  </p>
-  <%= link_to "Forgot password?", new_password_path %>
-</section>
+      <%= form.submit "Sign in",
+                  class:
+                    "btn btn-primary btn-wide text-white text-sm md:text-base w-full sm:w-auto" %>
+    <% end %>
+
+    <div class="mt-4 text-center w-full max-w-md">
+      <p class="text-sm md:text-base mb-2">Don't have an account?
+        <%= link_to "Register",
+        new_register_path,
+        class: "text-blue-600 hover:text-blue-800 font-medium" %>
+      </p>
+      <%= link_to "Forgot password?",
+      new_password_path,
+      class: "text-sm md:text-base text-blue-600 hover:text-blue-800 font-medium" %>
+    </div>
+  </section>
+</main>

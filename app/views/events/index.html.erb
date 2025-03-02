@@ -1,7 +1,9 @@
 <%= render "partials/navbar/navbar" %>
 
-<section class="flex flex-col">
-  <% if authenticated? %>
-    <%= render "partials/events/events_authenticated_events_card" %>
-  <% end %>
-</section>
+<main>
+  <section class="flex flex-col">
+    <% if authenticated? %>
+      <%= render "partials/events/events_authenticated" %>
+    <% end %>
+  </section>
+</main>

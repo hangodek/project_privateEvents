@@ -1,0 +1,24 @@
+<div class="prose flex flex-col p-4 text-center max-w-4xl mx-auto">
+  <h1 class="text-2xl md:text-4xl font-bold mb-4">Welcome to Event Private Events Planner</h1>
+  <p class="text-sm md:text-base mb-4">
+    Plan, organize, and manage your private events with ease! Whether you're
+    hosting a small gathering or a large celebration, our Event Planner helps
+    you stay in control. Create events, invite attendees, and keep track of
+    everything in one place.
+  </p>
+  <p class="text-sm md:text-base">
+    Join events hosted by others, RSVP with a single click, and see who else is
+    attending. Our platform makes it simple to connect with friends, family, or
+    colleagues while ensuring your events run smoothly. Start creating
+    unforgettable experiences today!
+  </p>
+</div>
+
+<div class="flex flex-col md:flex-row justify-center gap-4 p-4">
+  <%= link_to "Login",
+  new_session_path,
+  class: "btn btn-primary text-white w-32 text-sm md:text-base" %>
+  <%= link_to "Register",
+  new_register_path,
+  class: "btn btn-primary text-white w-32 text-sm md:text-base" %>
+</div>
